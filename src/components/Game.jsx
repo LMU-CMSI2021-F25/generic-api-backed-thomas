@@ -1,5 +1,6 @@
 import { getTeamAccentColor, hexToRgb } from './Color';
 import { toBBRTeamCode } from './teams';
+import { getTeamLogoUrlByAbbreviation } from '../assets/logoMap';
 
 function periodToOvertime(period) {
     switch (period) {
@@ -51,7 +52,7 @@ const Game = ({ game }) => {
             <div className="game-header">
                 <img
                     className="game-team-logo"
-                    src={`./src/assets/${game.home_team.abbreviation}.png`}
+                    src={getTeamLogoUrlByAbbreviation(game.home_team.abbreviation) || ''}
                     alt={game.home_team.full_name}
                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 />
@@ -63,7 +64,7 @@ const Game = ({ game }) => {
                     <div className="game-team-name">{game.visitor_team.abbreviation}</div>
                         <img 
                         className="game-team-logo"
-                        src={`./src/assets/${game.visitor_team.abbreviation}.png`}
+                        src={getTeamLogoUrlByAbbreviation(game.visitor_team.abbreviation) || ''}
                         alt={game.visitor_team.full_name}
                         onError={(e) => { e.currentTarget.style.display = 'none'; }}
                     />

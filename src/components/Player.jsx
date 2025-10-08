@@ -1,5 +1,6 @@
 import { getTeamAccentColor, hexToRgb } from './Color';
 import { toBBRTeamCode } from './teams';
+import { getTeamLogoUrlByAbbreviation } from '../assets/logoMap';
 
 const Player = ({ player }) => {
     const accentHex = getTeamAccentColor(player.team);
@@ -9,7 +10,7 @@ const Player = ({ player }) => {
             <div className="player-header">
                 <img
                     className="team-logo"
-                    src={`./src/assets/${player.team.abbreviation}.png`}
+                    src={getTeamLogoUrlByAbbreviation(player.team.abbreviation) || ''}
                     alt={player.team.full_name}
                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 />

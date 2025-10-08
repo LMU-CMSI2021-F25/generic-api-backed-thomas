@@ -2,13 +2,7 @@
 import React from 'react';
 import { getTeamAccentColor, hexToRgb } from './Color';
 import { toBBRTeamCode } from './teams';
-
-function getTeamLogo(team) {
-    if (team.full_name === "Washington Capitols") {
-        return `./src/assets/WASC.png`;
-    }
-    return `./src/assets/${team.abbreviation}.png`;
-}
+import { getTeamLogoUrl } from '../assets/logoMap';
 
 const Team = ({ team }) => {
     const accentHex = getTeamAccentColor(team);
@@ -18,8 +12,9 @@ const Team = ({ team }) => {
             <div className="team-header">
                 <img
                     className="team-logo"
-                    src={getTeamLogo(team)}
+                    src={getTeamLogoUrl(team) || ''}
                     alt={team.full_name}
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 />
                 <div>
                     {team.city ? (
